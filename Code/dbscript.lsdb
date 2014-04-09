@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE note SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.3'
+ replicaid='48257A330026EE8E'>
+<noteinfo noteid='126' unid='9BD12F1565176007852565D30080821A' sequence='5036'>
+<created><datetime>19980326T182339,14-05</datetime></created>
+<modified><datetime>20120827T094522,17+08</datetime></modified>
+<revised><datetime>20120827T094522,16+08</datetime></revised>
+<lastaccessed><datetime>20120827T094522,17+08</datetime></lastaccessed>
+<addedtofile><datetime>20120706T150515,29+08</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=administrator/O=LNWeb</name><name>CN=shemin/O=bj-fanuc</name></updatedby>
+<revisions><datetime dst='true'>20020916T142958,99-04</datetime></revisions>
+<wassignedby><name>CN=shemin/O=bj-fanuc</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$POID'><datetime>20050218T100855,96-05</datetime></item>
+<item name='$TITLE' sign='true'><text>Database Script</text></item>
+<item name='$Flags'><text>t34Q</text></item>
+<item name='$PublicAccess' sign='true'><text>1</text></item></note>
+

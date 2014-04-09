@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	<xp:button value="标签" id="button1">
+		<xp:eventHandler event="onclick" submit="true"
+			refreshMode="complete">
+			<xp:this.action><![CDATA[#{javascript:var db:NotesDatabase = session.getCurrentDatabase();
+var agent:NotesAgent = db.getAgent("ServerLoadControl");
+agent.run();}]]></xp:this.action>
+		</xp:eventHandler></xp:button></xp:view>

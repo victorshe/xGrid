@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false">
+	<xp:this.afterRenderResponse><![CDATA[#{javascript:try{
+	var externalContext = facesContext.getExternalContext();
+	var writer = facesContext.getResponseWriter();
+	var response = externalContext.getResponse();
+	  
+	// Set content type	
+	response.setContentType("application/json");	 
+	response.setHeader("Cache-Control", "no-cache");
+	
+	
+	var vw:NotesView = database.getView("vwCustomTable");
+	if(null!=vw){
+		json = "";	
+		var ec:NotesViewEntryCollection = vw.getAllEntries();
+		var colsName:java.util.Vector = vw.getColumnNames();
+		if(ec.getCount()>0){
+			var entry:NotesViewEntry = ec.getFirstEntry();
+			while(null!=entry){
+				
+				json += '{"@unid":"'+entry.getDocument().getUniversalID() + '",';
+				json += '"@position":"' + entry.getPosition(".") + '",';
+				for(var i=0;i<colsName.size();i++){
+					json += '"' + colsName.get(i) + '":"' + entry.getColumnValues().get(i) + '",';	
+				}
+				json = @Left(json,@Length(json)-2);
+				json += '"},'
+				
+				tmpentry = ec.getNextEntry(entry)
+				entry.recycle();
+				entry = tmpentry;
+			}
+		}
+		json  = "[" + @Left(json, @Length(json) - 1) + "]";	
+	}
+	
+	writer.write(json);	 
+	writer.endDocument();
+	
+} catch(e){
+	_dump(e);	
+}}]]>
+	</xp:this.afterRenderResponse>
+</xp:view>

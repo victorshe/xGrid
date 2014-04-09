@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+
+
+	<xp:this.resources>
+		<xp:script src="/ServerSideJS.js.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	
+	<xe:applicationLayout id="oneUILayout1">
+		<xe:this.facets>
+			<xp:callback xp:key="LeftColumn" facetName="LeftColumn"
+				id="callback1">
+			</xp:callback>
+			<xp:callback xp:key="RightColumn" facetName="RightColumn"
+				id="callback2">
+			</xp:callback>
+		</xe:this.facets>
+		<xe:this.configuration>
+			<xe:applicationConfiguration legalLogoAlt="北京发那科机电有限公司"
+				navigationPath="${javascript:compositeData.navigationPath}"
+				defaultNavigationPath="${javascript:compositeData.defaultNavigationPath}"
+				legalText="(c) 2012-2013 北京发那科机电有限公司"
+				placeBarName="#{javascript:@DbTitle();}">
+
+				<xe:this.bannerUtilityLinks>
+
+					<xe:userTreeNode>
+						<xe:this.label><![CDATA[#{javascript:var UserFullName = context.getUser().getFullName();
+if(sessionScope.UserFullName==null||sessionScope.UserFullName!=UserFullName){
+	var UserCN = @Name("[CN]",@DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"AltFullName"));
+	var UserDept = @DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"Department");
+	var UserMail = @DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"MailAddress");
+	var UserPosts = @Trim(@DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"F_Posts"));
+	if (UserCN != null){
+		sessionScope.UserCN = UserCN.toString();
+	}
+	
+	if(UserFullName != null){
+		sessionScope.UserFullName = UserFullName;
+	}
+	
+	if(UserDept !=null ){
+		sessionScope.UserDept = UserDept.toString();
+	}
+	
+	if(UserMail !=null){
+		sessionScope.UserMail = UserMail.toString();
+	}
+	
+	if(UserPosts !=null){
+		sessionScope.UserPosts = UserPosts.toString();
+	}
+	
+	return "欢迎您，"+UserCN;	
+}else{
+	return "欢迎您，"+sessionScope.UserCN;
+}}]]></xe:this.label>
+					</xe:userTreeNode>
+					<xe:loginTreeNode label="登录"></xe:loginTreeNode>
+
+					<xe:basicLeafNode label="退出">
+
+
+
+						<xe:this.href><![CDATA[#{javascript:var url = context.getUrl().toString();
+var i = url.indexOf(".com.cn")+7;
+//sessionScope.UserCN=null;
+return url.slice(0,i)+"/names.nsf?Logout&redirectto="+url
+}]]></xe:this.href>
+					</xe:basicLeafNode>
+				</xe:this.bannerUtilityLinks>
+
+
+				<xe:this.footerLinks>
+					<xe:basicContainerNode label="公司相关网站">
+						<xe:this.children>
+							<xe:basicLeafNode onClick=";" label="公司网站首页"
+								href="http://www.bj-fanuc.com.cn">
+							</xe:basicLeafNode>
+
+							<xe:basicLeafNode label="公司OA首页"
+								href="http://oa.bj-fanuc.com.cn">
+							</xe:basicLeafNode>
+						</xe:this.children>
+					</xe:basicContainerNode>
+
+
+
+
+					<xe:basicContainerNode label="协同平台应用">
+						<xe:this.children>
+							<xe:basicLeafNode label="协同平台主页">
+								<xe:this.href><![CDATA[#{javascript:var strUrl:string = context.getUrl().toString().toLowerCase();
+var intUrl = strUrl.indexOf(".com.cn")+7;
+return strUrl.slice(0,intUrl)+"/AFB/home.nsf"}]]></xe:this.href>
+							</xe:basicLeafNode>
+							<xe:basicLeafNode label="知识管理系统"></xe:basicLeafNode>
+						</xe:this.children>
+					</xe:basicContainerNode>
+				</xe:this.footerLinks>
+
+
+
+
+			</xe:applicationConfiguration>
+		</xe:this.configuration>
+		<xp:callback id="OneUIMainAreaCallback"></xp:callback>
+		<xp:eventHandler event="onItemClick" submit="true"
+			refreshMode="complete">
+			<xp:this.action><![CDATA[#{javascript:var s = context.getSubmittedValue()
+if(s=="home") {
+	context.redirectToPage("Core_Home")
+} else if(s=="domino") {
+	context.redirectToPage("Domino_Home")
+} else if(s=="firebug") {
+	sessionScope.firebug = !sessionScope.firebug;
+	context.reloadPage();
+}	}]]></xp:this.action>
+		</xp:eventHandler>
+	</xe:applicationLayout>
+</xp:view>

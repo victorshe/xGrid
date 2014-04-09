@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">	
+	<xc:ccxGrid caption="联系人" showRowNumbers="true" height="500"
+		loadOnce="true" ignoreCase="true" showFilterToolbar="true"
+		grouping="true" url="./xJsonContacts.xsp" rowNum="50"
+		xpName="xContactDetail.xsp" action="openDocument" target="_blank"
+		allowReorder="true" emptyRecords="没有相关记录">
+		<xc:this.colNames><![CDATA[['ID','姓名','部门','岗位','编号']]]></xc:this.colNames>
+		<xc:this.rowList><![CDATA[[50, 100, 500]]]></xc:this.rowList>
+		<xc:this.colModel><![CDATA[[{name:'FirstName', index:'FirstName', width:150, formatter:editLinkFmatter},
+{name:'LastName', index:'LastName', width:150},
+{name:'State', index:'State', width:100},
+{name:'City', index:'City', width:150, formatter:editLinkFmatter},
+{name:'@unid', index:'@unid', width:100, hidden:true}]]]></xc:this.colModel>
+		<xc:this.groupField><![CDATA[['State','City']]]></xc:this.groupField>
+		<xc:this.goupingOptions><![CDATA[#{javascript:['无|clear','部门|State','岗位|City']}]]></xc:this.goupingOptions>
+		<xc:this.showGroupCol><![CDATA[[true,true]]]></xc:this.showGroupCol>
+	</xc:ccxGrid></xp:view>

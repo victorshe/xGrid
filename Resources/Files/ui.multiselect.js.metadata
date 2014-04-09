@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="3.3" replicaid="48257A330026EE8E" version="8.5" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="202" sequence="7" unid="4F9B5EF0C0B2752B80257A09003E31E3">
+<created><datetime dst="true">20120525T121920,03+01</datetime></created>
+<modified><datetime>20120827T094523,99+08</datetime></modified>
+<revised><datetime>20120827T094523,98+08</datetime></revised>
+<lastaccessed><datetime>20120827T094523,99+08</datetime></lastaccessed>
+<addedtofile><datetime>20120706T150516,37+08</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=administrator/O=LNWeb</name><name>CN=shemin/O=bj-fanuc</name></updatedby>
+<wassignedby><name>CN=shemin/O=bj-fanuc</name></wassignedby>
+<item name="$TITLE"><text>ui.multiselect.js</text></item>
+<item name="$Flags"><text>345CgQ</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+
+<item name="$FileModDT" sign="true"><datetime>20111212T174042,00+00</datetime></item>
+
+<item name="$FileNames" sign="true"><text>ui.multiselect.js</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.2</text></item></note>

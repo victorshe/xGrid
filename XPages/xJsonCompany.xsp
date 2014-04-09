@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false">
+	<xp:this.afterRenderResponse><![CDATA[#{javascript:try{
+	var externalContext = facesContext.getExternalContext();
+	var writer = facesContext.getResponseWriter();
+	var response = externalContext.getResponse();
+	  
+	// Set content type	
+	response.setContentType("application/json");	 
+	response.setHeader("Cache-Control", "no-cache");
+	  
+	// Get all Contacts 
+	//var query = 'Form = "Person"';
+	//var session:NotesSession = new NotesSession();
+	//var db:NotesDatabase = session.getDatabse("","");
+	//print(db.isOpen());
+	var db:NotesDatabase = session.getDatabase("","AFB/JCO.nsf");
+	//var agent:NotesAgent = db.getAgent("getCompany");
+	
+	var sqlDb:NotesDatabase = session.getDatabase("","AFB/JCO.nsf");
+	var agSQL:NotesAgent = sqlDb.getAgent("getCompany");
+	var docTemp:NotesDocument = database.createDocument();
+
+	var INNAME = sessionScope.Query;
+	if(INNAME!=null){
+	
+		docTemp.replaceItemValue("INNAME",INNAME);
+		
+	
+		agSQL.runWithDocumentContext(docTemp);
+		//print(docTemp.getItemValue("QueryResults"));
+		var ritResults:NotesRichTextItem = docTemp.getFirstItem("QueryResults");
+		if(ritResults != null){
+			json = ritResults.getUnformattedText();
+			
+			//var vw:NotesView = db.getView("Company");
+			//var doc:NotesDocument = vw.getFirstDocument();
+			//json = "";
+			//var ritResults:NotesRichTextItem = doc.getFirstItem("QueryResults");
+			
+			
+			//json = ritResults.getUnformattedText();
+					
+			//print("1");
+			//json = 	
+			//print("json:"+json);
+			writer.write(json);	 
+			writer.endDocument();
+		}
+	
+	sessionScope.Query = null;
+	}
+} catch(e){
+	_dump(e);	
+}}]]>
+	</xp:this.afterRenderResponse>
+</xp:view>

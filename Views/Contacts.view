@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE note SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.3'
+ replicaid='48257A330026EE8E'>
+<noteinfo noteid='1e2' unid='40940F7BA04FBE7880257A080030A616' sequence='17'>
+<created><datetime dst='true'>20120524T095122,46+01</datetime></created>
+<modified><datetime>20120827T094522,13+08</datetime></modified>
+<revised><datetime>20120827T094522,12+08</datetime></revised>
+<lastaccessed><datetime>20130523T020148,70+08</datetime></lastaccessed>
+<addedtofile><datetime>20120706T150516,21+08</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=administrator/O=LNWeb</name><name>CN=shemin/O=bj-fanuc</name></updatedby>
+<wassignedby><name>CN=shemin/O=bj-fanuc</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>Contacts|Contacts</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+LAECACAACQBGaXJzdE5hbWUABQAJAEZpcnN0TmFtZQADAAIAHAAIAExhc3ROYW1lBQAIAExhc3RO
+YW1lAwACABgABQBFTWFpbAAFAAUARU1haWwAAwACABQABABDaXR5BQAEAENpdHkDAAIAEgAHAGNy
+ZWF0ZWQAaQADAAIAMAADACQxMAAFAAkARmlyc3ROYW1lAAEAAQAgACICBQAIAExhc3ROYW1lIgID
+AAUAUABMAAkACQAIAAUABAAFAAcAAwAJAAQARmlyc3ROYW1lTGFzdE5hbWVFTWFpbENpdHlTdGF0
+ZWNyZWF0ZWQkMTAkQ29uZmxpY3QkUkVGBAAEAAAAIAAFAAQARm9ybQEABwBDb250YWN0AAoCBAAE
+AAMABwAMAAUACTNTNFMA
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+MQADAABEgGYAAAAJAIBmAAkACACYZgARAAUARmlyc3ROYW1lTGFzdE5hbWVTdGF0ZQ==
+</rawitemdata></item>
+<item name='$Collation1' summary='true'>
+<rawitemdata type='2'>
+IgACAABEgGYAAAAJABhmAAkABQBGaXJzdE5hbWVTdGF0ZQ==
+</rawitemdata></item>
+<item name='$Collation2' summary='true'>
+<rawitemdata type='2'>
+IgACAABEgWYAAAAJABhmAAkABQBGaXJzdE5hbWVTdGF0ZQ==
+</rawitemdata></item>
+<item name='$Collation3' summary='true'>
+<rawitemdata type='2'>
+IQACAABEgGYAAAAIABhmAAgABQBMYXN0TmFtZVN0YXRl
+</rawitemdata></item>
+<item name='$Collation4' summary='true'>
+<rawitemdata type='2'>
+IQACAABEgWYAAAAIABhmAAgABQBMYXN0TmFtZVN0YXRl
+</rawitemdata></item>
+<item name='$Collation5' summary='true'>
+<rawitemdata type='2'>
+HQACAABEgWYAAAAEABhmAAQABQBDaXR5U3RhdGU=
+</rawitemdata></item>
+<item name='$Collation6' summary='true'>
+<rawitemdata type='2'>
+HAACAABEgGYAAAADABhmAAMABQAkMTBTdGF0ZQ==
+</rawitemdata></item>
+<item name='$Collation7' summary='true'>
+<rawitemdata type='2'>
+HAACAABEgWYAAAADABhmAAMABQAkMTBTdGF0ZQ==
+</rawitemdata></item>
+<item name='$VIEWFORMAT' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQAHAA0AiAAAAFZDAQMJAAoAIgAAAEYAAQAACQAAAAAAAAAAAAICAAAAVkMBAwgACQAeAAAAVAAB
+AAAJAAAAAAAAAAAAAgIAAABWQwAABQAFABoAAACfAAEAAAkAAAAAAAAAAAACAgAAAFZDAAIEAAQA
+FgAAAFAAAQAACQAAAAAAAAAAAAICAAAAVkMAAAUABQAAAAAAPgABAAAJAAEAAAAAAAAAAgIAAABW
+QwAABwAHABQAAAByAAEAAAkAAAAAAAAAAAACAgAAAFZDAAMDAAQAPgAAANwAAQAACQAAAAAAAAAA
+AAICAAAARmlyc3ROYW1lRmlyc3QgTmFtZSIAAgAgAAkARmlyc3ROYW1lAAUACQBGaXJzdE5hbWUA
+AwBMYXN0TmFtZUxhc3QgTmFtZR4AAgAcAAgATGFzdE5hbWUFAAgATGFzdE5hbWUDAEVNYWlsRU1h
+aWwaAAIAGAAFAEVNYWlsAAUABQBFTWFpbAADAENpdHlDaXR5FgACABQABABDaXR5BQAEAENpdHkD
+AFN0YXRlU3RhdGVjcmVhdGVkQ3JlYXRlZBQAAgASAAcAY3JlYXRlZABpAAMAJDEwTmFtZT4AAgAw
+AAMAJDEwAAUACQBGaXJzdE5hbWUAAQABACAAIgIFAAgATGFzdE5hbWUiAgMABwAMAAUACTBTMEUA
+JgABAAAAAQEACQEAAAoBAQ4KAAAvAK0rAQABAAEAAAAAAAAAAABXQwEBAAkAAAAAAAAAAAAAAAAA
+AAAAAAAEAAAAAAD//wAAAAAAAAAAAAAAAAAAV0MBAQAJAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA
+//8AAAAAAAAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAP//AAAAAAAAAAAA
+AAAAAABXQwEBAAkAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAD//wAAAAAAAAAAAAAAAAAAV0MBAQAJ
+AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA//8AAAAAAAAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAA
+AAAAAAAAAAQAAAAAAP//AAAAAAAAAAAAAAAAAABXQwEBAAkAAAAAAAAAAAAAAAAAAAAAAAAEAAAA
+AAD//wAAAAAAAAAAAAAAAAAAQgAAAAAAAQD///8AAQD39/cAAQAAAAAAAAAAAAAAAAABAP///wAB
+AP///wAAAAEAAAAAAAEAAAAAAAEAAAAAAAAACAAAAAAAAQA=
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>Y</text></item>
+<item name='$DesignerVersion'><text>8.5.2</text></item>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8TAAAAAAABAAcAQ29udGFjdAA=
+</rawitemdata></item></note>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex"
+	pageTitle="#{javascript:@DbTitle()}">
+
+
+
+	<!--  
+		<hr />
+		<xe:restService id="restService2"
+		pathInfo="peoplecustomjson">
+		<xe:this.service>
+		<xe:viewJsonService viewName="people"
+		defaultColumns="true">
+		
+		</xe:viewJsonService>
+		</xe:this.service>
+		</xe:restService>
+		<xc:ccxGrid url="./xPeople.xsp/peoplecustomjson" height="500"
+		rowNum="100" ignoreCase="true" loadOnce="true"
+		showFilterToolbar="true" grouping="true"
+		emptyRecords="No documents to view" showRowNumbers="false"
+		xpName="xPersonDetail.xsp" action="openDocument" target="_blank"
+		allowReorder="true" caption="People - 40000 records" colID="@unid">
+		<xc:this.colNames><![CDATA[['#','Internet Address','Name','Country', 'Domain', 'Creation Date', 'ID']]]></xc:this.colNames>
+		<xc:this.colModel><![CDATA[[{name:'@position',index:'@position', width:50, sorttype:'int'},
+		{name:'InternetAddress', index:'InternetAddress', width:250},
+		{name:'$17', index:'$17', width:175},
+		{name:'OfficeCountry', width:200, formatter:editLinkFmatter	},
+		{name:'$23', index:'$23', width:150 },
+		{name:'$24', index:'$24', width:125, sorttype:'date', formatter:'date', datefmt:'mm/dd/yyy' },
+		{name:'@unid', index:'@unid', width:250, hidden:true}]]]></xc:this.colModel>
+		<xc:this.rowList><![CDATA[[50, 100, 500, 1000]]]></xc:this.rowList>
+		<xc:this.goupingOptions><![CDATA[#{javascript:['None|clear','Country|OfficeCountry','Domain|$23']}]]></xc:this.goupingOptions>
+		<xc:this.groupField><![CDATA[[]]]></xc:this.groupField>
+		<xc:this.showGroupCol><![CDATA[[true]]]></xc:this.showGroupCol>
+		</xc:ccxGrid>
+	-->
+	<xp:panel>
+		<xp:panel style="margin:10px 30px 0 10px ">
+			<xp:button id="button1" value="刷新">
+				<xp:eventHandler event="onclick" submit="true"
+					refreshMode="complete" immediate="true">
+				</xp:eventHandler>
+			</xp:button>
+			<xp:text escape="true" id="computedField1"
+				style="float:right">
+				<xp:this.value><![CDATA[#{javascript:var UserFullName = context.getUser().getFullName();
+if(sessionScope.UserFullName==null||sessionScope.UserFullName!=UserFullName){
+	var UserCN = @Name("[CN]",@DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"AltFullName"));
+	var UserDept = @DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"Department");
+	var UserMail = @DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"MailAddress");
+	var UserPosts = @Trim(@DbLookup(new Array("","names.nsf"),"($Users)",UserFullName,"F_Posts"));
+	sessionScope.UserCN = UserCN.toString();
+	sessionScope.UserFullName = UserFullName;
+	sessionScope.UserDept = UserDept.toString();
+	sessionScope.UserMail = UserMail.toString();
+	sessionScope.UserPosts = UserPosts.toString();
+	return "欢迎您，"+UserCN;	
+}else{
+	return "欢迎您，"+sessionScope.UserCN;
+}}]]></xp:this.value>
+			</xp:text>
+		</xp:panel>
+		<xp:panel>
+			<xc:ccxGrid url="./xJsonCustom.xsp" height="600"
+				ignoreCase="true" loadOnce="true" showFilterToolbar="true"
+				grouping="false" emptyRecords="没有相关客户信息" showRowNumbers="true"
+				xpName="xPersonDetail.xsp" action="openDocument" target="_blank"
+				allowReorder="true" caption="客户信息" rowNum="50" colID="@unid"
+				showGroupCol="true">
+				<xc:this.colNames>
+					<![CDATA[
+				['ID','UNID','客户名称2','客户类别','营业范围', '经常代购的最终用户', '联系人姓名', '联系电话','联系传真','备注']
+			]]>
+				</xc:this.colNames>
+				<xc:this.colModel>
+					<![CDATA[
+				[
+				{name:'@position',index:'@position', width:50, sorttype:'int'},
+				{name:'@unid',index:'@unid', width:0, hidden:true, editable:true},
+				{name:'$CustomName', index:'$CustomName', width:150, editable:true},
+				{name:'$CustomType', index:'$CustomType', width:100, editable:true},
+				{name:'$CustomArea', index:'$CustomArea', width:100, editable:true},
+				{name:'$EndUser', index:'$EndUser', width:150 , editable:true},
+				{name:'$ContactName', index:'$ContactName', width:125, editable:true},
+				{name:'$ContactPhone', index:'$ContactPhone', width:100,editable:true},
+				{name:'$ContactFax', index:'$ContactFax', width:100,editable:true},
+				{name:'$Remark', index:'$Remark', width:300,editable:true}]
+			]]>
+				</xc:this.colModel>
+				<xc:this.rowList><![CDATA[[50, 100, 500, 1000]]]></xc:this.rowList>
+
+				<xc:this.goupingOptions><![CDATA[#{javascript:['全部|clear','客户类别|$CustomType']}]]></xc:this.goupingOptions>
+				<xc:this.groupField><![CDATA[[$CustomType]]]></xc:this.groupField>
+			</xc:ccxGrid>
+		</xp:panel>
+	</xp:panel>
+
+</xp:view>

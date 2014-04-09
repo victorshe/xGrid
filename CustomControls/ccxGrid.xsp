@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:this.resources>
+		<!-- Custom Redmond UI Theme -->
+		<xp:styleSheet href="/jquery-ui-1.8.18.custom.css" />
+		<!-- jqGrid UI Theme -->
+		<xp:styleSheet href="/ui.jqgrid.css" />
+		<!-- Multiselect UI Theme, used to reorder columns -->
+		<xp:styleSheet href="/ui.multiselect.css" />
+		<!-- Custom css used by XPages -->
+		<xp:styleSheet href="/custom.css"></xp:styleSheet>
+	</xp:this.resources>
+	<!-- Minified version of jQuery -->
+	<script src="jquery-1.7.2.min.js"></script>
+	<!-- Minified version of Custom UI - jQuery -->
+	<script src="jquery-ui-1.8.1.custom.min.js"></script>
+	<!-- English definition language for jqGrid -->
+	<script src="grid.locale-cn.js"></script>
+	<!-- JS for multiple selection, used to reorder column -->
+	<script src="ui.multiselect.js"></script>
+	<!-- Minified version of jqGrid -->
+	<script src="jquery.jqGrid.min.js"></script>	
+	<xp:scriptBlock id="jqGridBlock">
+		<xp:this.value>
+			<![CDATA[
+				$().ready(function(){
+					var lastsel;
+					jQuery("#listxGrid").jqGrid({
+				  			url:'#{javascript:compositeData.url}',
+							datatype: "json",
+					   		colNames:#{javascript:compositeData.colNames},
+					   		colModel:#{javascript:compositeData.colModel},
+							jsonReader: {
+							    repeatitems: false,
+							    id: '#{javascript:compositeData.colID}',
+							    root: function (obj) {
+							        if ($.isArray(obj)) return obj;
+							        if ($.isArray(obj.items)) return obj.items;
+							        return [];
+							    },
+							    page: function () { return 1; },
+							    total: function () { return 1; },
+							    records: function (obj) {
+							        if ($.isArray(obj))	return obj.length;
+							        if ($.isArray(obj.items))	return obj.items.length;
+							        return 0;
+							    }
+							},
+							gridview: true,
+			                loadonce: #{javascript:compositeData.loadOnce},
+			                ignoreCase: #{javascript:compositeData.ignoreCase},
+							rowNum: #{javascript:compositeData.rowNum},
+			                rowList: #{javascript:compositeData.rowList},
+			                rownumbers: #{javascript:compositeData.showRowNumbers},
+			                height: #{javascript:compositeData.height},
+			                caption: '#{javascript:compositeData.caption}',
+			                pager: '#pagerxGrid',
+			                viewrecords: true,
+			                emptyrecords: '#{javascript:compositeData.emptyRecords}',
+			                sortable:#{javascript:compositeData.allowReorder},
+			                sortname: '@position',
+			                grouping: true,
+  							groupingView : { 
+     							//groupField : ['State','City'],
+     							//groupField : ['State',"City"],
+     							groupCollapse : false,
+     							groupOrder: ['asc','desc'],
+     							groupText : ['<b>{0}</b>'],
+								
+     							groupColumnShow : [true,true]
+  							},
+  						
+							editurl: "./xEditCustom.xsp"
+  							
+					});
+					if (#{javascript:compositeData.showFilterToolbar} == true){
+						jQuery("#listxGrid").filterToolbar({stringResult: false, defaultSearch: 'cn', searchOnEnter: false});
+						$("#listxGrid")[0].toggleToolbar();
+					}
+					jQuery("#listxGrid").jqGrid('navGrid','#pagerxGrid',{edit:false, add:false, del:false},
+						{url: './xEditCustom.xsp'}, // default settings for edit
+   						{url: './xEditCustom.xsp'}, // default settings for add
+   						{url: './xDeleteCustomer.xsp'}, // delete
+   						{closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, showQuery: false, refreshstate:'current'} // search options   						
+   					);
+   					
+   					jQuery.extend(jQuery.jgrid.edit, {
+					     // some other settings
+					    closeAfterAdd: true,
+					    closeAfterEdit: true,
+					    recreateForm: true,
+					    reloadAfterSubmit: false
+					});
+   					
+   					if (#{javascript:compositeData.showFilterToolbar} == true){
+						jQuery("#listxGrid").filterToolbar({stringResult: false, defaultSearch: 'cn', searchOnEnter: false});
+						jQuery("#listxGrid").jqGrid('navButtonAdd', "#pagerxGrid",{
+   							caption: "",
+   							title: "Toggle Search Bar",
+   							buttonicon: 'ui-icon-pin-s', 
+      						onClickButton: function () {
+      							$("#listxGrid")[0].toggleToolbar()
+      						}
+      					});
+					}
+   					jQuery("#listxGrid").jqGrid('navButtonAdd','#pagerxGrid',{
+   						caption: "",
+   						title: "Reorder Columns",
+   						onClickButton : function (){
+   							jQuery("#listxGrid").jqGrid('columnChooser');
+   						}
+   					});
+					function editLinkFmatter(cellvalue, options, rowObject) {
+					     return "<a target='#{javascript:compositeData.target}' href='./#{javascript:compositeData.xpName}?documentId=" + rowObject["@unid"] +
+					     		"&action=#{javascript:compositeData.action}' class='doclink'>" + cellvalue + "</a>";
+					}
+					/*var myid = $("[id$=cbGroupingOptions]");
+					jQuery(myid).change(function(){
+						var vl = $(this).val();
+						if(vl) {
+							if(vl == "clear") {
+								jQuery("#listxGrid").jqGrid('groupingRemove',true);
+							} else {
+								//jQuery("#listxGrid").jqGrid('groupingGroupBy',vl);
+							}
+					 	}
+					 });*/
+				});]]>
+		</xp:this.value>
+	</xp:scriptBlock>
+	<xp:panel id="panelGrouping"
+		rendered="#{javascript:compositeData.grouping}"
+		styleClass="panelGrouping">
+		<xp:label value="分类:" id="label1"></xp:label>
+		<xp:comboBox id="cbGroupingOptions">
+			<xp:selectItems>
+				<xp:this.value><![CDATA[#{javascript:compositeData.goupingOptions}]]></xp:this.value>
+			</xp:selectItems>			
+		</xp:comboBox>
+	</xp:panel>
+	<div id="divxGrid">
+		<table id="listxGrid" class="listxGrid"></table>
+		<div id="pagerxGrid"></div>
+	</div>	
+</xp:view>

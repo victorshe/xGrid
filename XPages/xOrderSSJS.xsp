@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex" pageTitle="订单执行完整性检查报表">
+	
+	<xc:OneUILayout>
+		<xp:panel>
+			<xc:ccxGrid caption="联系人" showRowNumbers="true"
+				loadOnce="true" ignoreCase="true" grouping="false"
+				url="./xJsonOrder.xsp" rowNum="20" xpName="xContactDetail.xsp"
+				action="openDocument" target="_blank" allowReorder="true"
+				emptyRecords="没有相关记录" showFilterToolbar="true">
+				<xc:this.colNames><![CDATA[['基本完成日期','订单号','系统名称','订单数量','物料组','部件编号','需求数量','投料数量','反冲数量','未清数量']]]></xc:this.colNames>
+				<xc:this.rowList><![CDATA[[10, 20, 50, 100, 500]]]></xc:this.rowList>
+				<xc:this.colModel><![CDATA[
+	[	
+	{name:'GLTRP', index:'GLTRP', width:100},
+	{name:'AUFNR', index:'AUFNR', width:100},
+	{name:'PLNBEZ',	index:'PLNBEZ', width:100},
+	{name:'GAMNG', index:'GAMNG', width:100},
+	{name:'MATKL', index:'MATKL', width:100},
+	{name:'MATNR', index:'MATNR', width:150},
+	{name:'BDMNG', index:'BDMNG', width:100},	
+	{name:'MENGE', index:'MENGE', width:100},
+	{name:'BACNO', index:'BACNO', width:100},
+	{name:'OWNNO', index:'OWNNO', width:100}
+	]
+]]></xc:this.colModel>
+
+
+
+				<xc:this.height><![CDATA["100%"]]></xc:this.height>
+			</xc:ccxGrid></xp:panel></xc:OneUILayout></xp:view>

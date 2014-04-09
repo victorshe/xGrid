@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex" pageTitle="客户信息查询">
+
+
+	
+	<xp:br></xp:br>
+	<xp:br></xp:br>
+	<xc:OneUILayout>
+		<xp:panel>
+			<xp:label value="公司名称：" id="label1"></xp:label>
+			<xp:inputText id="inputText1" value="#{sessionScope.Query}"
+				required="true">
+				<xp:this.validators>
+					<xp:validateLength minimum="2"
+						message="请至少输入2个关键字。">
+					</xp:validateLength>
+					<xp:validateRequired message="查询关键字不能为空。"></xp:validateRequired>
+				</xp:this.validators>
+				<xp:this.onkeypress><![CDATA[var kc = event.keyCode?event.keyCode:event.which;
+if(kc ==13){
+	var btn = dojo.byId("#{id:buttonSearch}");
+	btn.click();
+	return false;
+}]]></xp:this.onkeypress>
+			</xp:inputText>
+			<xp:button value="查询" id="buttonSearch">
+				<xp:eventHandler event="onclick" submit="true"
+					refreshMode="complete">
+				</xp:eventHandler>
+			</xp:button>
+			<xc:ccxGrid caption="联系人" showRowNumbers="true"
+				loadOnce="true" ignoreCase="true" grouping="false"
+				url="./xJsonCompany.xsp" rowNum="20" xpName="xContactDetail.xsp"
+				action="openDocument" target="_blank" emptyRecords="没有相关记录"
+				showFilterToolbar="true" allowReorder="false">
+				<xc:this.colNames><![CDATA[['客户号','客户名称','城市','邮政编码','电话','传真','地址']]]></xc:this.colNames>
+				<xc:this.rowList><![CDATA[[10, 20, 50, 100, 500]]]></xc:this.rowList>
+				<xc:this.colModel><![CDATA[
+	[	
+	{name:'KUNNR', index:'KUNNR', width:100},
+	{name:'NAME1', index:'NAME1', width:200},
+	{name:'ORT01', index:'ORT01', width:100},
+	{name:'PSTLZ', index:'PSTLZ', width:100},
+	{name:'TELF1', index:'TELF1', width:100},
+	{name:'TELFX', index:'TELFX', width:100},
+	{name:'ADRNR', index:'ADRNR', width:200}
+	]
+]]></xc:this.colModel>
+
+
+
+				<xc:this.height><![CDATA["100%"]]></xc:this.height>
+			</xc:ccxGrid>
+		</xp:panel>
+	</xc:OneUILayout>
+
+</xp:view>

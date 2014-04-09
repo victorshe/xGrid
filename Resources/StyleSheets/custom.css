@@ -1,0 +1,9 @@
+#divxGrid {margin: 10px;}
+
+.panelGrouping {margin: 10px;}
+
+a.doclink:link, a.doclink:visited  {color: #2E6E9E; font-weight: normal;}
+
+a.doclink:active, a.doclink:hover { text-decoration: none;  }
+
+a.doclink:hover {text-decoration:underline;}

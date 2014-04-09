@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config>
+  <faces-config-extension>
+    <namespace-uri>http://www.ibm.com/xsp/custom</namespace-uri>
+    <default-prefix>xc</default-prefix>
+  </faces-config-extension>
+  <composite-component>
+    <component-type>ccxGrid</component-type>
+    <composite-name>ccxGrid</composite-name>
+    <composite-file>/ccxGrid.xsp</composite-file>
+    <composite-extension>
+      <designer-extension>
+        <in-palette>true</in-palette>
+        <render-markup>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&#xd;
+&lt;xp:view xmlns:xp="http://www.ibm.com/xsp/core"&gt;&#xd;
+&lt;xp:panel&gt;&#xd;
+&lt;p&gt;&lt;b&gt;ccxGrid Custom Control&lt;/b&gt;&lt;/p&gt;&#xd;
+&lt;p&gt;Use Custom Properties to define json source and grid layout.&lt;/p&gt;&#xd;
+&lt;/xp:panel&gt;&#xd;
+&lt;/xp:view&gt;</render-markup>
+      </designer-extension>
+    </composite-extension>
+    <property>
+      <property-name>url</property-name>
+      <property-class>string</property-class>
+      <display-name>URL</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.designer.domino.client.script.editor</editor>
+        </designer-extension>
+      </property-extension>
+      <description>String. URL for JSON data source.</description>
+    </property>
+    <property>
+      <property-name>colNames</property-name>
+      <property-class>string</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.designer.domino.client.script.editor</editor>
+        </designer-extension>
+      </property-extension>
+      <display-name>Column Names</display-name>
+      <description>An array in which we place the names of the columns. This is the text that appears in the head of the grid (header layer). The names are separated with commas. Note that the number of elements in this array should be equal of the number elements in the colModel array.</description>
+    </property>
+    <property>
+      <property-name>colModel</property-name>
+      <property-class>string</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.designer.domino.client.script.editor</editor>
+        </designer-extension>
+      </property-extension>
+      <display-name>Column Model</display-name>
+      <description>Array which describes the parameters of the columns.</description>
+    </property>
+    <property>
+      <property-name>caption</property-name>
+      <property-class>string</property-class>
+      <display-name>Caption</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+          <default-value>xGrid</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>Defines the caption for the grid.</description>
+    </property>
+    <property>
+      <property-name>showRowNumbers</property-name>
+      <property-class>boolean</property-class>
+      <display-name>Show Row Numbers</display-name>
+      <property-extension>
+        <designer-extension>
+          <default-value>false</default-value>
+          <editor>com.ibm.std.Boolean</editor>
+        </designer-extension>
+      </property-extension>
+      <description>If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1.</description>
+    </property>
+    <property>
+      <property-name>height</property-name>
+      <property-class>string</property-class>
+      <display-name>Height</display-name>
+      <description>The height of the grid. Can be set as number (in this case we mean pixels) or as percentage (only 100% is acceped) or value of auto is acceptable.&#xd;
+Example: 500 or 'auto' </description>
+      <property-extension>
+        <designer-extension>
+          <default-value>500</default-value>
+        </designer-extension>
+      </property-extension>
+    </property>
+    <property>
+      <property-name>rowList</property-name>
+      <property-class>string</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.designer.domino.client.script.editor</editor>
+        </designer-extension>
+      </property-extension>
+      <display-name>Row List</display-name>
+      <description>An array to construct a select box element in the pager in which we can change the number of the visible rows.&#xd;
+Typically you can set this like [10,20,30]</description>
+    </property>
+    <property>
+      <property-name>rowNum</property-name>
+      <property-class>int</property-class>
+      <display-name>Rows Num</display-name>
+      <description>Sets how many records we want to view in the grid.</description>
+    </property>
+    <property>
+      <property-name>loadOnce</property-name>
+      <property-class>boolean</property-class>
+      <display-name>Load Once</display-name>
+      <property-extension>
+        <designer-extension>
+          <default-value>true</default-value>
+          <editor>com.ibm.std.Boolean</editor>
+        </designer-extension>
+      </property-extension>
+      <description>If this flag is set to true, the grid loads the data from the server only once (using the appropriate datatype). After the first request, the datatype parameter is automatically changed to local and all further manipulations are done on the client side.</description>
+    </property>
+    <property>
+      <property-name>ignoreCase</property-name>
+      <property-class>boolean</property-class>
+      <display-name>Ignore Case</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.Boolean</editor>
+          <default-value>true</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>By default the local searching is case-sensitive. To make the local search and sorting not case-insensitive set this options to true</description>
+    </property>
+    <property>
+      <property-name>showFilterToolbar</property-name>
+      <property-class>boolean</property-class>
+      <display-name>Show Filter Toolbar</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.Boolean</editor>
+          <default-value>false</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>This option controls if inline search will be available on every column.</description>
+    </property>
+    <property>
+      <property-name>grouping</property-name>
+      <property-class>boolean</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.Boolean</editor>
+          <default-value>false</default-value>
+        </designer-extension>
+      </property-extension>
+      <display-name>Grouping</display-name>
+      <description>Enables grouping in grid</description>
+    </property>
+    <property>
+      <property-name>emptyRecords</property-name>
+      <property-class>string</property-class>
+      <display-name>Empty Records</display-name>
+      <property-extension>
+        <designer-extension>
+          <default-value>No records to view</default-value>
+          <editor>com.ibm.std.String</editor>
+        </designer-extension>
+      </property-extension>
+      <description>The string to display when the returned (or the current) number of records in the grid is zero.</description>
+    </property>
+    <property>
+      <property-name>goupingOptions</property-name>
+      <property-class>object</property-class>
+      <display-name>Grouping Options</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+          <default-value>['None|clear']</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>Array, used for values on Grouping ComboBox</description>
+    </property>
+    <property>
+      <property-name>groupField</property-name>
+      <property-class>object</property-class>
+      <display-name>Group Field</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+          <default-value>[]</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>Array, used to specify default field for Grouping.&#xd;
+Add [] if none.</description>
+    </property>
+    <property>
+      <property-name>xpName</property-name>
+      <property-class>string</property-class>
+      <display-name>XPages Name</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+        </designer-extension>
+      </property-extension>
+      <description>XPages name used to open selected document</description>
+    </property>
+    <property>
+      <property-name>action</property-name>
+      <property-class>string</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+        </designer-extension>
+      </property-extension>
+      <display-name>Action</display-name>
+      <description>String. Used to control if document is opened in read or edit mode.&#xd;
+Values are openDocument or editDocument.</description>
+    </property>
+    <property>
+      <property-name>target</property-name>
+      <property-class>string</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+          <default-value>_self</default-value>
+        </designer-extension>
+      </property-extension>
+      <display-name>Target</display-name>
+      <description>String. Specifies where the selected document will be opened.</description>
+    </property>
+    <property>
+      <property-name>allowReorder</property-name>
+      <property-class>boolean</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.Boolean</editor>
+          <default-value>true</default-value>
+        </designer-extension>
+      </property-extension>
+      <display-name>Allow Reorder</display-name>
+      <description>When set to true, this option allows reordering columns by dragging and dropping them with the mouse.</description>
+    </property>
+    <property>
+      <property-name>showGroupCol</property-name>
+      <property-class>object</property-class>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+          <default-value>[true]</default-value>
+        </designer-extension>
+      </property-extension>
+      <description>Arra. Show/Hide the column on which we group. The value here should be a boolean true/false for the group level. </description>
+      <display-name>Show Grouping Column</display-name>
+    </property>
+    <property>
+      <property-name>colID</property-name>
+      <property-class>string</property-class>
+      <display-name>Column ID</display-name>
+      <property-extension>
+        <designer-extension>
+          <editor>com.ibm.std.String</editor>
+        </designer-extension>
+      </property-extension>
+      <description>String. ID for every row in the grid.</description>
+    </property>
+  </composite-component>
+</faces-config>

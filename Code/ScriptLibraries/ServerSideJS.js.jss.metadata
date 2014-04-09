@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="filter" maintenanceversion="3.3" replicaid="48257A330026EE8E" version="8.5" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="29a" sequence="4" unid="8D3D68B59C8A763A48257A67002FA151">
+<created><datetime>20120827T164014,89+08</datetime></created>
+<modified><datetime>20130403T010914,26+08</datetime></modified>
+<revised><datetime>20130402T112911,89+08</datetime></revised>
+<lastaccessed><datetime>20130403T010914,26+08</datetime></lastaccessed>
+<addedtofile><datetime>20120827T164014,97+08</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=shemin/O=bj-fanuc</name><name>CN=zhangjuhao/O=bj-fanuc</name><name>CN=shemin/O=bj-fanuc</name></updatedby>
+<wassignedby><name>CN=shemin/O=bj-fanuc</name></wassignedby>
+<item name="$DesignerVersion" sign="true"><text>8.5.2</text></item>
+<item name="$TITLE" sign="true"><text>ServerSideJS.js</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+
+<item name="$Class"><text>Common</text></item>
+<item name="$Flags"><text>.5834Q</text></item></note>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="Person"></xp:dominoDocument>
+	</xp:this.data>
+	<xp:table>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Type:" id="type_Label1" for="type1"></xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.Type}" id="type1"></xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="First name:" id="firstName_Label1"
+					for="firstName1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.FirstName}"
+					id="firstName1">
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Last name:" id="lastName_Label1"
+					for="lastName1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.LastName}"
+					id="lastName1">
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+	</xp:table></xp:view>

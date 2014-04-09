@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false"
+   xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+   <h2>Xpages Async Multi File Uploader Custom Control v1.0</h2>
+
+   This XPage processess files uploaded by the uploader.
+   <xp:br></xp:br>
+   <br/>
+   It saves the files to the server disk in the temp directory and subdirectory 'xspupload'.
+   If the file is correctly uploaded this xpage returns the original file name and the file name on the server.
+    <br/><br/>
+   Because of the file being renamed in the temp directory, the file will not automatically be deleted by the server.
+   This will be done by the custom control when all files are uploaded.
+    
+
+   <xp:this.beforeRenderResponse><![CDATA[#{javascript:
+importPackage(java.io);
+//importPackage(java.io.PrintWriter);
+try {
+
+	var exCon:javax.faces.context.ExternalContext = facesContext.getExternalContext();
+	var response:com.ibm.xsp.webapp.XspHttpServletResponse = exCon.getResponse();
+
+	
+	var request:com.sun.faces.context.MyHttpServletRequestWrapper = exCon.getRequest();
+	var map:java.util.Map = request.getParameterMap();
+	print(map);
+	var it:java.util.Iterator = map.entrySet().iterator();
+	if(map.get("@unid").toString().length>0){
+	//
+		var doc:NotesDocument = database.getDocumentByUNID(map.get("@unid").toString());
+	}else{
+		var doc:NotesDocument = database.createDocument();
+		doc.replaceItemValue("form","fmCustom");
+	}
+	
+	
+    var $CustomName = map.get("$CustomName").toString();
+    var $CustomType = map.get("$CustomType").toString();
+    var $CustomArea = map.get("$CustomArea").toString();
+    var $EndUser  = map.get("$EndUser").toString();
+    var $ContactName = map.get("$ContactName").toString();
+    var $ContactPhone = map.get("$ContactPhone").toString();
+    var $ContactFax = map.get("$ContactFax").toString();
+    var $Remark = map.get("$Remark").toString();
+
+    doc.replaceItemValue("M_CustomName",$CustomName);
+    doc.replaceItemValue("M_CustomType",$CustomType);
+    doc.replaceItemValue("M_CustomArea",$CustomArea);
+    doc.replaceItemValue("M_EndUser",$EndUser);
+    doc.replaceItemValue("M_ContactName",$ContactName);
+    doc.replaceItemValue("M_ContactPhone",$ContactPhone);
+    doc.replaceItemValue("M_ContactFax",$ContactFax);
+    doc.replaceItemValue("M_Remark",$Remark);
+    
+ 	doc.computeWithForm(false,false);
+	doc.save(true,false);
+	
+	facesContext.responseComplete()
+ 	
+} catch (e) {
+	print ("error: " + e.toString() );
+} 
+}]]></xp:this.beforeRenderResponse>
+
+</xp:view>

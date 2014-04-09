@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">	
+	<xe:restService id="restService1"
+		pathInfo="servicesalecustomjson">
+		<xe:this.service>
+			<xe:viewJsonService viewName="vwCustomTable"
+				defaultColumns="true" count="50">
+
+			</xe:viewJsonService>
+		</xe:this.service>
+	</xe:restService>
+
+</xp:view>

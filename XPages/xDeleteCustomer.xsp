@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false"
+   xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+  
+   <xp:this.beforeRenderResponse><![CDATA[#{javascript:
+importPackage(java.io);
+//importPackage(java.io.PrintWriter);
+try {
+
+	var exCon:javax.faces.context.ExternalContext = facesContext.getExternalContext();
+	var response:com.ibm.xsp.webapp.XspHttpServletResponse = exCon.getResponse();
+
+	
+	var request:com.sun.faces.context.MyHttpServletRequestWrapper = exCon.getRequest();
+	var map:java.util.Map = request.getParameterMap();
+	var it:java.util.Iterator = map.entrySet().iterator();
+	var it:java.util.Iterator = map.entrySet().iterator();
+	
+	if(map.get("id").toString().length>0){
+	//
+		var doc:NotesDocument = database.getDocumentByUNID(map.get("id").toString());
+		if(null!=doc){
+			doc.remove(true);
+		}
+		
+		facesContext.responseComplete()
+		
+	}
+	
+	
+
+ 	
+} catch (e) {
+	print ("error: " + e.toString() );
+} 
+}]]></xp:this.beforeRenderResponse>
+
+</xp:view>

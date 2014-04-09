@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="Person"
+			databaseName="names.nsf">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:table>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="First Name:" id="firstName_Label1"
+					for="firstName1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.FirstName}"
+					id="firstName1">
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Last Name:" id="lastName_Label1"
+					for="lastName1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.LastName}"
+					id="lastName1">
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Email:" id="eMail_Label1"
+					for="eMail1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.EMail}" id="eMail1"></xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="State:" id="state_Label1"
+					for="state1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.State}" id="state1"></xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="City:" id="city_Label1" for="city1"></xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.City}" id="city1"></xp:inputText>
+			</xp:td>
+		</xp:tr>
+	</xp:table></xp:view>

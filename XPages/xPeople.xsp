@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">	
+	<xe:restService id="restService1"
+		pathInfo="peoplecustomjson">
+		<xe:this.service>
+			<xe:viewJsonService viewName="people" defaultColumns="true"
+				count="100">
+
+			</xe:viewJsonService>
+		</xe:this.service>
+	</xe:restService>
+	<xc:ccxGrid url="./xPeople.xsp/peoplecustomjson" height="500"
+		rowNum="100" ignoreCase="true" loadOnce="true"
+		showFilterToolbar="true" grouping="true"
+		emptyRecords="No documents to view" showRowNumbers="false"
+		xpName="xPersonDetail.xsp" action="openDocument" target="_blank"
+		allowReorder="true" caption="People - 40000 records" colID="@unid">
+		<xc:this.colNames><![CDATA[['#','Internet Address','Name','Country', 'Domain', 'Creation Date', 'ID']]]></xc:this.colNames>
+		<xc:this.colModel><![CDATA[[{name:'@position',index:'@position', width:50, sorttype:'int'},
+{name:'InternetAddress', index:'InternetAddress', width:250},
+{name:'$17', index:'$17', width:175},
+{name:'OfficeCountry', width:200, formatter:editLinkFmatter	},
+{name:'$23', index:'$23', width:150 },
+{name:'$24', index:'$24', width:125, sorttype:'date', formatter:'date', datefmt:'mm/dd/yyy' },
+{name:'@unid', index:'@unid', width:250, hidden:true}]]]></xc:this.colModel>
+		<xc:this.rowList><![CDATA[[50, 100, 500, 1000]]]></xc:this.rowList>
+		<xc:this.goupingOptions><![CDATA[#{javascript:['None|clear','Country|OfficeCountry','Domain|$23']}]]></xc:this.goupingOptions>
+		<xc:this.groupField><![CDATA[[$CustomType]]]></xc:this.groupField>
+		<xc:this.showGroupCol><![CDATA[[true]]]></xc:this.showGroupCol>
+	</xc:ccxGrid>
+</xp:view>
