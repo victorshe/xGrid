@@ -20,5 +20,6 @@
     <import optional="true" plugin="com.ibm.xsp.rcp"/>
     <import optional="true" plugin="com.ibm.xsp.extlib"/>
     <!--AUTOGEN-END-BUILDER: End of automatically generated section-->
+	
   </requires>
 </plugin>
